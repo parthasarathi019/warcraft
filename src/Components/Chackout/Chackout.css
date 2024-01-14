@@ -1,0 +1,9 @@
+.carousel .thumbs {
+    display: flex;
+    transition: all .15s ease-in;
+    transform: translate3d(0, 0, 0);
+    position: relative;
+    list-style: none;
+    white-space: nowrap;
+    justify-content: center;
+}

@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Source+Code+Pro&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-50;
+}
+
+/* *<===dark light background===>* */
+.light-background {
+  @apply bg-gradient-to-r from-[#e5f7f4] via-[#daeff3] to-[#efffff];
+}
+
+.dark-background {
+  @apply dark:bg-gradient-to-br dark:from-slate-800 dark:to-indigo-800;
+}
+
+.myContainer {
+  @apply w-full max-w-[1320px] mx-auto px-2;
+}
+
+.swiper-button-prev {
+  @apply after:text-primaryColor1/80;
+}
+.swiper-button-next {
+  @apply after:text-primaryColor1/80;
+}
+
+*{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+
+
+.rounded-full-ex{
+  width: 40px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+
+*{
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+  }
+}
+
+
+.table :where(thead, tbody) :where(tr:not(:last-child)), .table :where(thead, tbody) :where(tr:first-child:last-child) {
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-bottom-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+}
