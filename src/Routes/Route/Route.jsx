@@ -19,6 +19,7 @@ import T_and_C from "../../Components/Policy/T_and_C";
 import Return_Policy from "../../Components/Policy/Return_Policy";
 import Refand_Policy from "../../Components/Policy/Refand_Policy";
 import Update_A_Product from "../../Components/Update_A_Product/Update_A_Product";
+import CountdownButton from "../../Components/CountdownButton/CountdownButton";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: "/Refand_Policy",
         element: <Refand_Policy />,
+      },
+      {
+        path: "/CountdownButton",
+        element: <CountdownButton />,
       },
 
       {
