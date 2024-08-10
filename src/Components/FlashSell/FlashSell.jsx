@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const FlashSell = () => {
-  const [data, setData] = useState([]);
-  console.log(data);
+  const [mata, setmata] = useState([]);
+  // console.log(data);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_DataHost}/data`)
       .then((res) => res.json())
-      .then((data) => setData(data));
+      .then((mata) => setmata(mata));
   }, []);
+
+  const data = mata ? [...mata].reverse() : [];
 
   const [showAll, setShowAll] = useState(false);
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider";
@@ -6,28 +6,48 @@ import axios from "axios";
 import { useCounter } from "../../../Hooks/CounterContext";
 
 const Buy_Now = () => {
+/////////////////////////////////////////////////////////////////////////////
+// this is only for show the pymebt numbers
+  const [mata, setmata] = useState([]);
+  // console.log(data);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_DataHost}/Get_Number`)
+      .then((res) => res.json())
+      .then((mata) => setmata(mata));
+  }, []);
+  ///////////////////////////////////////////////////////////////////////////
+
+
+
   const { counter } = useCounter();
   const data = useLoaderData();
-  const { _id, Product_Name, Price, Doc_1_PC, Doc_2_PC, Doc_3_PC, Product_Code, Brand_Name } = data;
+  const { _id, Product_Name, Price, Doc_1_PC } = data;
   const { user, loading } = useContext(AuthContext);
 
   const [deliveryOption, setDeliveryOption] = useState("DJI");
   // const [counter, setQuantity] = useState(1);
+  const generateRandomNumber = () => {
+    return (Math.floor(Math.random() * 10000000000) + 1).toString();
+  };
   const [formData, setFormData] = useState({
     YourName: "",
     YourMobileNumber: "",
-    YourFullAddress: "",
+    T_Method: "",
     YourEmail: "",
+    T_ID: "",
     Is_orderd: "Orderd",
     Product_id: _id,
     // counter: "",
     UserEmail: user?.email,
     userEmail: user?.email,
-    PiC: Doc_1_PC || Doc_2_PC || Doc_3_PC,
+    PiC: Doc_1_PC ,
     Product_Name,
-    Brand_Name,
-    Product_Code,
-    Price
+    Price,
+    purseDate : new Date().getTime(),
+    Iscanceled : "No",
+    Status : "Pending",
+    random_number: generateRandomNumber()
   });
 
   const handleDeliveryChange = (e) => {
@@ -130,11 +150,15 @@ const Buy_Now = () => {
       <form onSubmit={handleFormSubmit}>
         <section className="flex flex-col md:flex-row justify-between md:gap-x-4 gap-y-5">
           <section className="md:w-[50%] bg-slate-0 md:p-4 bg-white">
-            <p className="text-center text-[18px] py-7">
-              To confirm the order, enter your name, address, mobile number, and
-              click on the{" "}
-              <span className="text-primaryColor1">confirm order</span> button
+            <p className="text-center text-[18px] pt-7 pb-3">
+              To confirm the order, make the payment on the
+              <span className="text-primaryColor1"> numbers</span> given below
             </p>
+            <section className="border-[2px] border-black flex flex-col gap-y-3 justify-center items-center mb-7">
+              <p className="font-bold text-[20px] text-red-600">BKASH - {mata[0]?.Bkash}      </p>
+              <p className="font-bold text-[20px] text-red-600">NAGAD - {mata[0]?.Nagad}      </p>
+              <p className="font-bold text-[20px] text-red-600">BINANCE - {mata[0]?.Binance}      </p>
+            </section>
             <section className="flex flex-col gap-y-4">
               <div>
                 <p className="pl-[5px]">Your Name</p>
@@ -148,11 +172,25 @@ const Buy_Now = () => {
                   onChange={handleInputChange}
                 />
               </div>
+            
               <div>
-                <p className="pl-[5px]">Your Mobile Number</p>
+                <p className="pl-[5px]">Your Email </p>
                 <input
                   className="w-full outline-none border-[1.2px] border-[#ced4da] rounded-[4px] py-2 pl-[8px] mt-1"
-                  placeholder="Enter Your Mobile Number"
+                  placeholder="Enter Your Email"
+                  type="text"
+
+                  name="YourEmail"
+                  value={user?.email}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div>
+                <p className="pl-[5px]">Payment Amount</p>
+                <input
+                  className="w-full outline-none border-[1.2px] border-[#ced4da] rounded-[4px] py-2 pl-[8px] mt-1"
+                  placeholder="Enter the number of money, you paid"
                   type="text"
                   required
                   name="YourMobileNumber"
@@ -161,73 +199,45 @@ const Buy_Now = () => {
                 />
               </div>
               <div>
-                <p className="pl-[5px]">Your Email (Optional)</p>
+                <p className="pl-[5px]">Payment Method</p>
                 <input
                   className="w-full outline-none border-[1.2px] border-[#ced4da] rounded-[4px] py-2 pl-[8px] mt-1"
-                  placeholder="Enter Your Email"
+                  placeholder="Enter Payment Method"
                   type="text"
-
-                  name="YourEmail"
-                  value={formData.YourEmail}
+                  required
+                  name="T_Method"
+                  value={formData.T_Method}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <p className="pl-[5px]">Your Full Address</p>
+                <p className="pl-[5px]">Transaction ID</p>
                 <input
                   className="w-full outline-none border-[1.2px] border-[#ced4da] rounded-[4px] py-2 pl-[8px] mt-1"
-                  placeholder="Enter Your Full Address"
+                  placeholder="Enter Transaction ID"
                   type="text"
                   required
-                  name="YourFullAddress"
-                  value={formData.YourFullAddress}
+                  name="T_ID"
+                  value={formData.T_ID}
                   onChange={handleInputChange}
                 />
               </div>
 
-              {/* <div>
-                <p className="pl-[5px]">Order counter:</p>
-                <input
-
-                  className="w-full outline-none border-[1.2px] border-[#ced4da] rounded-[4px] py-2 pl-[8px] mt-1"
-                  placeholder="Enter Your Full Address"
-                  type="number"
-
-                  required
-                  name="YourFullAddress"
-                  onChange={handleQuantity}
-                  value={counter}
-                  defaultValue={1}
-                />
-              </div> */}
-              <div className="">
-                <p className="pl-[5px]">Delivery charge:</p>
-                <select
-                  className="w-full outline-none border-[1.2px] border-[#ced4da] rounded-[4px] py-3 pl-[8px] mt-1"
-                  name="select"
-                  required
-                  id="select"
-                  onChange={handleDeliveryChange}
-                  value={deliveryOption}
-                >
-                  <option value="DJI">Inside Dhaka (60 Tk.)</option>
-                  <option value="Parrot">Outside Dhaka (120 Tk.)</option>
-                </select>
-              </div>
+            
               <input
                 type="submit"
-                value="Order Now"
-                className="w-full py-3 bg-orange-500 rounded-[3px] cursor-pointer"
+                value="Purchase Now"
+                className="w-full py-3 bg-orange-500 btn hover:bg-orange-300 rounded-[3px] cursor-pointer"
               />
             </section>
           </section>
           <section className="md:w-[50%] bg-white md:p-4 md:pt-0 py-4 md:py-0">
-            <p className="text-[18px] text-center md:text-left">Your Order</p>
+            <p className="text-[18px] text-center md:text-left">Your Plan</p>
             <div className="flex justify-between items-center pt-5 md:gap-x-4 gap-x-2">
               <div className="w-[20%]">
                 <img
                   className="w-[90px] h-[60px] md:w-[80px] md:h-[80px] rounded-[2px]"
-                  src={Doc_1_PC || Doc_2_PC || Doc_3_PC}
+                  src={Doc_1_PC}
                   alt=""
                 />
               </div>
@@ -235,7 +245,7 @@ const Buy_Now = () => {
                 {Product_Name}
               </div>
               <div className="w-[10%] text-right">
-                <p>TK</p> <p>{Price}</p>
+                <p>USD</p> <p>{Price}</p>
               </div>
             </div>
             <hr className="mt-3 border-t-2" />
@@ -243,25 +253,19 @@ const Buy_Now = () => {
               <div className="flex justify-between">
                 <p className="font-bold">Subtototal:</p>
                 <p className="font-bold">
-                  <span className="font-semibold">TK</span> {Price}
+                  <span className="font-semibold">$</span> {Price}
                 </p>
               </div>
               <div className="flex justify-between">
-                <p className="font-bold">counter:</p>
-                <p className="font-bold">
-                  <span className="font-semibold">Pcs</span> {counter}
-                </p>
-              </div>
-              <div className="flex justify-between">
-                <p className="font-bold">Delivery charge:</p>
+                <p className="font-bold">Activition Fees:</p>
                 <p className="font-bold text-orange-600">
-                  <span className="font-semibold">TK</span>{" "}
-                  {deliveryOption === "DJI" ? 60 : 120}
+                 
+                  Free
                 </p>
               </div>
               <div className="flex justify-between">
                 <p className="font-bold text-[18px]">Total:</p>
-                <p className="font-bold text-[19.2px]">TK {calculateTotal()}</p>
+                <p className="font-bold text-[19.2px]">$ {Price}</p>
               </div>
             </div>
           </section>

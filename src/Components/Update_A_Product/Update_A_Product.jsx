@@ -85,7 +85,7 @@ const Update_A_Product = () => {
             }
 
             // Make the axios PUT request
-            const response = await axios.put(`https://server-side-zeta-ivory.vercel.app/Product_Data/${Loaded_Product_Data?._id}`, data);
+            const response = await axios.put(`https://invest-backend-inky.vercel.app/Product_Data/${Loaded_Product_Data?._id}`, data);
 
             if (response.status === 200) {
                 // alert("User Updated Successfully !!!", { autoClose: 2000 });.

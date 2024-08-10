@@ -14,7 +14,7 @@ const DashboardLayout = () => {
   }, [usersData]);
 
   useEffect(() => {
-    fetch(`https://server-side-zeta-ivory.vercel.app/users/${user?.email}`)
+    fetch(`https://invest-backend-inky.vercel.app/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserData(data));
   }, [user]);

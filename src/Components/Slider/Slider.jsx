@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Slider.css";
-import banner from "../../assets/Main-banner.png";
 import banner1 from "../../assets/Ban_2.webp";
 import banner2 from "../../assets/Ban_3.webp";
 import banner3 from "../../assets/ban3.webp";
@@ -14,7 +13,7 @@ import banner3 from "../../assets/ban3.webp";
 // import required modules
 import { Navigation, Autoplay } from "swiper/modules";
 
-const banners = [banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3, banner, banner1, banner2, banner3];
+const banners = [  banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3,   banner1, banner2, banner3];
 
 const Slider = () => {
   return (

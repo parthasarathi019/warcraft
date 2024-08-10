@@ -4,23 +4,23 @@ import { IoIosPricetag, IoIosCheckmarkCircle } from "react-icons/io";
 
 const serviceGuar = [
   {
-    title: "save payments",
+    title: "Save Payments",
     icon: IoShieldCheckmarkSharp,
   },
   {
-    title: "national wide delevery",
+    title: "Spread Your Funds",
     icon: FaTruckFast,
   },
   {
-    title: "Best Price Guaranteed",
+    title: "Best Reward",
     icon: IoIosPricetag,
   },
   {
-    title: "100% Authentic Products",
+    title: "100% Authentic",
     icon: IoIosCheckmarkCircle,
   },
   {
-    title: "DreamGlaxy Verified",
+    title: "We_invest Verified",
     icon: MaterialSymbolsVerifiedRounded,
   },
   {

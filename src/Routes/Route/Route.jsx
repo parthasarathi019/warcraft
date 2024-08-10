@@ -20,17 +20,27 @@ import Return_Policy from "../../Components/Policy/Return_Policy";
 import Refand_Policy from "../../Components/Policy/Refand_Policy";
 import Update_A_Product from "../../Components/Update_A_Product/Update_A_Product";
 import CountdownButton from "../../Components/CountdownButton/CountdownButton";
+import CountdownTimer from "../../Components/CountdownTimer/CountdownTimer";
+import CategoryProducts from "../../Components/CategoryProducts/CategoryProducts";
+import Add_Catagory from "../../Components/Add_Catagory/Add_Catagory";
+import Not_Found_Website from "../../Components/Not_Found_Website/Not_Found_Website";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainPage />,
-    errorElement: <ErrorPage />,
+    element: <MainPage /> ,
+    // element: <> <Outlet></Outlet> </> ,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch("https://invest-backend-inky.vercel.app/data")
       },
+      // {
+      //   path: "/",
+      //   element: <Not_Found_Website />,
+      // },
       {
         path: "/about",
         element: <About />,
@@ -72,14 +82,26 @@ export const router = createBrowserRouter([
         path: "/CountdownButton",
         element: <CountdownButton />,
       },
+      {
+        path: "/CountdownTimer",
+        element: <CountdownTimer />,
+      },
+      {
+        path: "/Not_Found_Website",
+        element: <Not_Found_Website />,
+      },
+
+      {
+        path: "/category/:categoryName",
+        element: <CategoryProducts />,
+      },
 
       {
         path: "/Chackout/:_id",
         element: (
-          <PrivateRoute>
-            {" "}
+       
             <Chackout />
-          </PrivateRoute>
+       
         ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_DataHost}/data/${params._id}`),
@@ -100,8 +122,10 @@ export const router = createBrowserRouter([
   {
     path: "/Update_A_Product/:id",
     element: (<Update_A_Product></Update_A_Product>),
-    loader: ({ params }) => fetch(`https://server-side-zeta-ivory.vercel.app/data/${params.id}`)
+    loader: ({ params }) => fetch(`https://invest-backend-inky.vercel.app/data/${params.id}`)
   },
+
+
   {
     path: "/dashboard",
     element: (
@@ -114,6 +138,7 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+        loader: () => fetch(`https://invest-backend-inky.vercel.app/Get_Number`)
       },
       {
         path: "/dashboard/orders",
@@ -122,6 +147,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/Product_Control",
         element: <Product_Control></Product_Control>,
+      },
+      {
+        path: "/dashboard/Add_Catagory",
+        element: <Add_Catagory></Add_Catagory>,
       }
     ]
   },
@@ -129,3 +158,6 @@ export const router = createBrowserRouter([
 
 
 ]);
+
+
+

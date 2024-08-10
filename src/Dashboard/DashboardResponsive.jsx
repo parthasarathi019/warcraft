@@ -65,15 +65,18 @@ const DashboardResponsive = () => {
           {RoleModel && (
             <>
               <li className="">
-                <NavLink className='' to="/dashboard">Upload Product</NavLink>
+                <NavLink className='' to="/dashboard">Add Number</NavLink>
               </li>
 
               <li className="mt-3">
                 <NavLink to="/dashboard/orders">Order List</NavLink>
               </li>
-              <li className="mt-3">
+              {/* <li className="mt-3">
                 <NavLink to="/dashboard/Product_Control">Product Control</NavLink>
               </li>
+              <li className="mt-3">
+                <NavLink to="/dashboard/Add_Catagory">Add Catagory</NavLink>
+              </li> */}
             </>
           )}
 

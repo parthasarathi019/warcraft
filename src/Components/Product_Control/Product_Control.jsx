@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 const Product_Control = () => {
     //eslint-disable-next-line
     const [Moookings, seMoookings] = useState([])
-    const url = (`https://server-side-zeta-ivory.vercel.app/data`)
+    const url = (`https://invest-backend-inky.vercel.app/data`)
     useEffect(() => {
         fetch(url)
 
@@ -31,7 +31,7 @@ const Product_Control = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://server-side-zeta-ivory.vercel.app/data/${_id}`, { method: "DELETE" },
+                fetch(`https://invest-backend-inky.vercel.app/data/${_id}`, { method: "DELETE" },
 
                 )
                     .then(res => res.json())
@@ -53,7 +53,7 @@ const Product_Control = () => {
     }
     return (
         <div>
-            <div className="overflow-x-auto w-full">
+            <div className="overflow-x-auto w-full md:pl-4">
                 <table className="table w-full">
                     {/* head */}
                     <thead>

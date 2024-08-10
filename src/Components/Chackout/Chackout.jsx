@@ -226,7 +226,7 @@ const Chackout = ({ }) => {
             </div>
             <div className="md:mt-3 mt-1 md:w-[650px]">
               <div>
-                <p>Additional Details :</p>
+                <p>Product Details :</p>
                 <p className="text-[#1a9cb7] cursor-pointer text-[14px] text-justify">
                   {Product_Description && Product_Description}
                 </p>
@@ -261,13 +261,13 @@ const Chackout = ({ }) => {
             {/* {console.log()} */}
             <div className="flex gap-x-3 pt-6">
               <Link to={`/shipping/${_id}`}>
-                <button className="text-white bg-[#2abbe8] md:px-[87px] px-[29px] md:py-[9.5px] py-[8px] rounded-[1.8px] hover:scale-105 duration-50000 transition-all">
+                <button className="text-white bg-[#2abbe8] btn  md:px-[87px] px-[29px] md:py-[9.5px] py-[8px] rounded-[1.8px] hover:scale-105 duration-50000 transition-all">
                   Buy Now
                 </button>
               </Link>
               <Link>
                 <button
-                  className="text-white bg-[#f57224] md:px-[87px] px-[22px] md:py-[9.5px] py-[8px] rounded-[1.8px] hover:scale-105 duration-50000 transition-all"
+                  className="text-white bg-[#f57224] md:px-[87px] px-[22px] md:py-[9.5px] py-[8px] btn rounded-[1.8px] hover:scale-105 duration-50000 transition-all"
                   onClick={handleAddToCartSave}
                 >
                   Add To Cart

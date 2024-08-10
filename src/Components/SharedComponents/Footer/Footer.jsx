@@ -5,17 +5,17 @@ import happy_Shopping from '../../../assets/happy_Shopping.png'
 const Footer = () => {
   return (
     <>
-      <div className="bg-navBg md:pt-8 md:mt-8 max-w-[1220px] mx-auto px-3 md:px-0">
+      <div className="bg-navBg md:mt-8 max-w-[1220px] mx-auto px-3 md:px-0">
         <div className=" flex flex-col mx-1 md:mx-0  md:flex-row gap-y-7 justify-between">
           <div className=" space-y-4">
             <h2 className="text-2xl font-semibold">Contact Us</h2>
 
             <div className=" text-[14.5px] md:text-normal space-y-2">
               <p className="flex items-center gap-2">
-                +880 1821-011131
+                +971 5097-36893
               </p>
               <p className="flex items-center gap-2">
-                sohelrana2023@gmail.com
+                mehedi@gmail.com
               </p>
               <p className="flex items-center gap-2">
                 Sonargaon, Narayanganj, Dhaka, Bangladesh
@@ -67,7 +67,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-[13px] md:text-normal text-center font-semibold  py-3 mt-3"> &copy; {new Date().getFullYear()} copy rights. All right reserved by<span className="font-bold text-[#f85606]"> Dreamgalaxybd</span></p>
+        <p className="text-[13px] md:text-normal text-center font-semibold  py-3 mt-3"> &copy; {new Date().getFullYear()} copy rights. All right reserved by<span className="font-bold text-[#f85606]"> InvestBD</span></p>
       </div>
     </>
   )

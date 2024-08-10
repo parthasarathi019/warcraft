@@ -15,7 +15,7 @@ const imgToken = import.meta.env.VITE_IMG_TOKEN;
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const img_host_url = `https://api.imgbb.com/1/upload?key=${imgToken}`;
@@ -30,57 +30,118 @@ const Register = () => {
     setSelectedFile(file);
   };
 
+  // const onSubmit = async (data) => {
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("image", selectedFile);
+
+  //     const imgResponse = await fetch(img_host_url, {
+  //       method: "POST",
+  //       body: formData,
+  //     }).then((res) => res.json());
+
+  //     if (imgResponse.success) {
+  //       const imgURL = imgResponse.data.display_url;
+  //       const { name, email, password } = data;
+
+  //       // Assuming you have a role field in your form
+  //       const role = "Buyer";
+
+  //       const userCredential = await createUser(email, password);
+  //       await updateUserProfile(name, imgURL);
+
+  //       // Send user data to the server
+  //       const response = await fetch(
+  //         `${import.meta.env.VITE_DataHost}/users/${email}`,
+  //         {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({ name, role, imgURL, password }),
+  //         }
+  //       );
+
+  //       if (response.ok) {
+  //         Swal.fire({
+  //           position: "top-center",
+  //           icon: "success",
+  //           title: "Register Success!",
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //         });
+
+  //         navigate("/");
+  //       } else {
+          
+  //       }
+  //     }
+  //   } catch (error) {
+      
+  //   }
+  // };
+
+
   const onSubmit = async (data) => {
     try {
-      const formData = new FormData();
-      formData.append("image", selectedFile);
-
-      const imgResponse = await fetch(img_host_url, {
-        method: "POST",
-        body: formData,
-      }).then((res) => res.json());
-
-      if (imgResponse.success) {
-        const imgURL = imgResponse.data.display_url;
-        const { name, email, password } = data;
-
-        // Assuming you have a role field in your form
-        const role = "Buyer";
-
-        const userCredential = await createUser(email, password);
-        await updateUserProfile(name, imgURL);
-
-        // Send user data to the server
-        const response = await fetch(
-          `${import.meta.env.VITE_DataHost}/users/${email}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, role, imgURL, password }),
-          }
-        );
-
-        if (response.ok) {
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Register Success!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-
-          navigate("/");
+      let imgURL = ""; // Default image URL
+  
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+  
+        const imgResponse = await fetch(img_host_url, {
+          method: "POST",
+          body: formData,
+        }).then((res) => res.json());
+  
+        if (imgResponse.success) {
+          imgURL = imgResponse.data.display_url;
         } else {
-          
+          throw new Error("Image upload failed");
         }
+      } else {
+        // Use the default image URL when no file is selected
+        imgURL = "https://static-00.iconduck.com/assets.00/user-avatar-happy-icon-2048x2048-ssmbv1ou.png";
+      }
+  
+      const { name, email, password } = data;
+      // Assuming you have a role field in your form
+      const role = "Buyer";
+  
+      const userCredential = await createUser(email, password);
+      await updateUserProfile(name, imgURL);
+  
+      // Send user data to the server
+      const response = await fetch(
+        `${import.meta.env.VITE_DataHost}/users/${email}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, role, imgURL, password }),
+        }
+      );
+  
+      if (response.ok) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Register Success!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+  
+        navigate("/");
+      } else {
+        // Handle failure
       }
     } catch (error) {
-      
+      // Handle error
     }
   };
-
+  
   return (
     <div className="login-wrapper py-12  px-4 md:px-0">
       <div className="container my-20">
@@ -182,13 +243,19 @@ const Register = () => {
 
                 {/* register button */}
                 <div className="form-control mb-6">
-                  <button
-                    type="submit"
-                    className="rounded bg-gradient-to-r from-red-500 to-yellow-500 text-white py-3 md:py-4 md:px-8 md:text-xl disabled:text-white"
-                  >
-                    Register
-                  </button>
-                </div>
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="btn btn-gradient md:btn-lg normal-case md:text-xl disabled:text-white"
+                >
+                  Register
+                  {loading ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    <FaArrowRight className="text-base align-bottom" />
+                  )}
+                </button>
+              </div>
                 {/* link to login page */}
                 <div className="flex items-center justify-center gap-x-5">
                   <span className="label-text text-[#555656] flex items-center gap-x-2">

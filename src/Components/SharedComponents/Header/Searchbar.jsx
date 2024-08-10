@@ -26,7 +26,7 @@ const Searchbar = () => {
       >
         <input
           type="text"
-          placeholder="search here..."
+          placeholder="সার্চ করুন..."
           className="w-full bg-white rounded-md border border-primaryColor1 outline-2 outline-primaryColor1 px-2 py-[5px] "
         />
       </div>
