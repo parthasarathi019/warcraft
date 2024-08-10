@@ -20,7 +20,7 @@ const Orders = () => {
     };
 
     useEffect(() => {
-        fetchData(); // Fetch data initially on component mount
+        fetchData(); // Fetch data initially on component moun
 
         const intervalId = setInterval(fetchData, 1000); // Periodically refetch data every 1 second
         return () => clearInterval(intervalId); // Cleanup function to clear the interval when the component unmounts
