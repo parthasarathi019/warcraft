@@ -55,11 +55,11 @@ const Header = () => {
       <div className=" flex items-center md:hidden justify-between px-3">
         <Link to="/">
           <div className="">
-            <img src={logo_M} alt="logo" className="w-[35px] h-[25px]" />
+            <img src={logo_M} alt="logo" className="w-[150px] h-[25px]" />
           </div>
         </Link>
-        <div>
-          <Searchbar />
+        <div className="mx-[100px] mt-[50px]">
+         
         </div>
         <div className="pr-2">
           {" "}
